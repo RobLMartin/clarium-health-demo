@@ -20,7 +20,7 @@ export default function Navigation() {
         <NavItem
           to={`/products`}
           icon={<ListBulletIcon height={28} width={28} />}
-          title="Datasets"
+          title="Products"
         />
       </div>
     </div>
