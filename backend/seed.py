@@ -12,6 +12,12 @@ def seed_products():
         {"name": "Surgical Gloves", "description": "Disposable surgical gloves"},
         {"name": "Sterile Syringes", "description": "Sterile syringes for injections"},
         {"name": "IV Solution", "description": "Intravenous saline solution"},
+        {
+            "name": "Antiseptic Wipes",
+            "description": "Wipes for cleaning and disinfecting surfaces",
+        },
+        {"name": "Medical Masks", "description": "Protective masks for medical use"},
+        {"name": "Bandages", "description": "Adhesive bandages for minor wounds"},
     ]
 
     for product_data in products:
