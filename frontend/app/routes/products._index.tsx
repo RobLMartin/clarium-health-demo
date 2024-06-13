@@ -21,7 +21,7 @@ export default function ProductsList() {
         <Link
           to={`${product.id}`}
           key={product.id}
-          className="flex justify-between items-center p-6 border-b border-gray-300 hover:bg-gray-100"
+          className="flex justify-between items-center p-6 border-b border-gray-300 hover:bg-white"
         >
           <div className="flex-1 flex">
             <span className="mr-4 font-light">{product.id}</span>

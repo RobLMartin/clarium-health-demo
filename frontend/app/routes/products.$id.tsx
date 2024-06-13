@@ -39,7 +39,7 @@ export default function ProductPage() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between">
         <div className="flex-1">
           <h1 className="text-6xl font-bold text-[#1E69FC] mb-6">
             {product.name}
@@ -53,11 +53,13 @@ export default function ProductPage() {
         </fetcher.Form>
       </div>
 
-      <h2 className="mt-6 text-3xl">Historical Data</h2>
-      <InventoryChart
-        historicalData={historicalData}
-        predictedData={predictedData}
-      />
+      <h2 className="my-6 text-3xl">Historical Data</h2>
+      <div className="bg-white shadow-lg rounded-lg p-8">
+        <InventoryChart
+          historicalData={historicalData}
+          predictedData={predictedData}
+        />
+      </div>
     </div>
   );
 }

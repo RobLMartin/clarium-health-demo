@@ -17,9 +17,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-gray-100">
         <div className="flex">
-          <div className="w-auto border-x dark:border-neutral-700">
+          <div className="w-auto border-x dark:border-neutral-700 bg-white">
             <Navigation />
           </div>
           <div className="w-full border-r dark:border-neutral-700">

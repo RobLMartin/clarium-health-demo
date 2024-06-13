@@ -1,19 +1,16 @@
 export default function Index() {
   return (
-    <div className="bg-gray-100 p-6 min-h-screen flex items-center justify-center">
+    <div className="p-6 min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-xl text-center">
         <h1 className="text-6xl font-bold text-[#1E69FC] mb-6 text-left">
-          Welcome,
-          <br />
-          Clarium Health
+          Welcome Jeff, Steph, and Tyler,
         </h1>
         <p className="text-xl font-light mt-4 text-left">
-          I&apos;m excited to have the opportunity to interview with you all!
+          I&apos;m excited to have the opportunity to interview with Clarium
+          Health! Looking forward to discussing how we can collaborate and
+          innovate together.
         </p>
-        <p className="text-xl font-light mt-4 text-left">
-          Looking forward to discussing how we can collaborate and innovate
-          together.
-        </p>
+
         <div className="mt-16">
           <a
             href="/about"
