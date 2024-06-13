@@ -1,7 +1,7 @@
 from config import app, db
+from routes.product_routes import product_bp
 
-# from routes.item_routes import my_bp
-# app.register_blueprint(my_bp)
+app.register_blueprint(product_bp)
 
 if __name__ == "__main__":
     with app.app_context():
