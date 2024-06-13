@@ -41,13 +41,11 @@ export default function ProductPage() {
     <div className="p-6">
       <div className="flex justify-between">
         <div className="flex-1">
-          <h1 className="text-6xl font-bold text-[#1E69FC] mb-1">
-            {product.name}
-          </h1>
+          <h1 className="text-6xl font-bold mb-1">{product.name}</h1>
           <p className="text-xl font-light">{product.description}</p>
         </div>
         <fetcher.Form method="post">
-          <button className="bg-gray-950 hover:bg-[#1E69FC] flex-none px-6 py-2 text-base leading-normal rounded-lg shadow-sm text-white font-semibold">
+          <button className="bg-[#1E69FC] flex-none px-6 py-2 text-base leading-normal rounded-lg shadow-sm text-white font-semibold">
             Predict Inventory
           </button>
         </fetcher.Form>

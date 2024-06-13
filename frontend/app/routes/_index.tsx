@@ -2,7 +2,7 @@ export default function Index() {
   return (
     <div className="p-6 min-h-screen flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-xl text-center">
-        <h1 className="text-6xl font-bold text-[#1E69FC] mb-6 text-left">
+        <h1 className="text-6xl font-bold mb-6 text-left">
           Welcome Jeff, Steph, and Tyler,
         </h1>
         <p className="text-xl font-light mt-4 text-left">
