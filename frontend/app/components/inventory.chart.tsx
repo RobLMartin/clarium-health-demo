@@ -54,18 +54,21 @@ const InventoryChart = ({
         <Line
           type="monotone"
           dataKey="historicalQuantity"
-          stroke="#8884d8"
+          stroke="#1E69FC"
           activeDot={{ r: 8 }}
+          dot={{ r: 4 }}
           name="Historical"
-          strokeWidth={2}
+          strokeWidth={3}
         />
         <Line
           type="monotone"
           dataKey="predictedQuantity"
-          stroke="#82ca9d"
+          stroke="#9cbdff"
           activeDot={{ r: 8 }}
+          dot={{ r: 4 }}
           name="Predicted"
           strokeWidth={2}
+          strokeDasharray={4}
         />
       </LineChart>
     </ResponsiveContainer>

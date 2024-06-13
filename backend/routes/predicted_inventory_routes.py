@@ -102,7 +102,7 @@ def predict_inventory():
         predicted_record = PredictedInventory(
             product_id=product_id,
             date=prediction_date,
-            predicted_quantity=quantity,
+            predicted_quantity=round(quantity),
         )
         db.session.add(predicted_record)
         predicted_records.append(predicted_record)
