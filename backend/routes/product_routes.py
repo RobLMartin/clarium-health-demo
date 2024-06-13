@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models import db, Product
+from models import db, Product, HistoricalInventory, PredictedInventory
 
 product_bp = Blueprint("product_bp", __name__)
 
@@ -41,3 +41,17 @@ def delete_product(id):
     db.session.delete(product)
     db.session.commit()
     return jsonify({"message": "Product deleted successfully"})
+
+
+@product_bp.route("/products/<int:id>/inventory_data", methods=["GET"])
+def get_product_inventory_data(id):
+    product = Product.query.get_or_404(id)
+    historical_data = HistoricalInventory.query.filter_by(product_id=id).all()
+    predicted_data = PredictedInventory.query.filter_by(product_id=id).all()
+    return jsonify(
+        {
+            "product": product.to_json(),
+            "historical_data": [record.to_json() for record in historical_data],
+            "predicted_data": [record.to_json() for record in predicted_data],
+        }
+    )

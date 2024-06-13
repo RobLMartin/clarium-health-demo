@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
-from models import db, PredictedInventory
+from models import db, PredictedInventory, HistoricalInventory
+from datetime import datetime, timedelta
+import numpy as np
 
 predicted_inventory_bp = Blueprint("predicted_inventory_bp", __name__)
 
@@ -15,6 +17,30 @@ def create_predicted_inventory():
     db.session.add(new_record)
     db.session.commit()
     return jsonify(new_record.to_json()), 201
+
+
+@predicted_inventory_bp.route("/predict_inventory", methods=["POST"])
+def predict_inventory():
+    data = request.get_json()
+    product_id = data["product_id"]
+    historical_data = HistoricalInventory.query.filter_by(product_id=product_id).all()
+
+    # Example: Simple moving average prediction
+    quantities = [record.quantity for record in historical_data]
+    if len(quantities) < 3:
+        return (
+            jsonify({"message": "Not enough historical data to make a prediction"}),
+            400,
+        )
+
+    moving_avg = np.mean(quantities[-3:])
+    prediction_date = datetime.utcnow().date() + timedelta(days=1)
+    predicted_record = PredictedInventory(
+        product_id=product_id, date=prediction_date, predicted_quantity=moving_avg
+    )
+    db.session.add(predicted_record)
+    db.session.commit()
+    return jsonify(predicted_record.to_json()), 201
 
 
 @predicted_inventory_bp.route("/predicted_inventory", methods=["GET"])
