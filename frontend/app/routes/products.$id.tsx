@@ -1,49 +1,63 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { fetchProductDetails } from "../data/products";
-import { HistoricalInventory, PredictedInventory } from "../types";
-import { useLoaderData } from "@remix-run/react";
+import { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
+import { fetchProductDetails, predictInventory } from "../data/products";
+import { useFetcher, useLoaderData } from "@remix-run/react";
+import InventoryChart from "../components/inventory.chart";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { id } = params;
 
   if (!id) {
-    return { product: null };
+    return { product: null, historicalData: null, predictedData: null };
   }
 
-  const product = await fetchProductDetails(id);
+  const data = await fetchProductDetails(id);
 
-  if (!product) {
-    return { product: null };
+  if (!data) {
+    return { product: null, historicalData: null, predictedData: null };
   }
 
-  return { product };
+  return {
+    product: data.product,
+    historicalData: data.historicalData,
+    predictedData: data.predictedData,
+  };
+};
+
+export const action = async ({ params }: ActionFunctionArgs) => {
+  const { id } = params;
+  if (!id) {
+    throw Error("idk");
+  }
+
+  return await predictInventory(Number(id));
 };
 
 export default function ProductPage() {
-  const { product } = useLoaderData<typeof loader>();
-  const { historicalData, predictedData } = product;
+  const { product, historicalData, predictedData } =
+    useLoaderData<typeof loader>();
+  const fetcher = useFetcher();
+
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
+    <div className="p-6">
+      <div className="flex justify-between items-center">
+        <div className="flex-1">
+          <h1 className="text-6xl font-bold text-[#1E69FC] mb-6">
+            {product.name}
+          </h1>
+          <p className="text-xl font-light">{product.description}</p>
+        </div>
+        <fetcher.Form method="post">
+          <button className="bg-gray-950 hover:bg-[#1E69FC] flex-none px-4 py-2 text-base leading-normal rounded-lg shadow-sm text-white font-semibold">
+            Predict Inventory
+          </button>
+        </fetcher.Form>
+      </div>
 
-      <h2>Historical Data</h2>
-      <ul>
-        {historicalData.map((record: HistoricalInventory) => (
-          <li key={record.id}>
-            {record.date}: {record.quantity}
-          </li>
-        ))}
-      </ul>
-
-      <h2>Predicted Data</h2>
-      <ul>
-        {predictedData.map((record: PredictedInventory) => (
-          <li key={record.id}>
-            {record.date}: {record.predictedQuantity}
-          </li>
-        ))}
-      </ul>
+      <h2 className="mt-6 text-3xl">Historical Data</h2>
+      <InventoryChart
+        historicalData={historicalData}
+        predictedData={predictedData}
+      />
     </div>
   );
 }

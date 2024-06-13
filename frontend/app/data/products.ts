@@ -31,3 +31,24 @@ export const fetchProductDetails = async (productId: string) => {
     throw error;
   }
 };
+
+export const predictInventory = async (productId: number) => {
+  console.log(productId);
+  try {
+    const response = await fetch(`${VITE_API_URL}/predict_inventory`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ productId }),
+    });
+    if (!response.ok) {
+      throw new Error("Failed to predict inventory");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error predicting inventory:", error);
+    throw error;
+  }
+};

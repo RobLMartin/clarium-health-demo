@@ -1,10 +1,5 @@
 import NavItem from "./nav.item";
-import {
-  // BarChartIcon,
-  // UploadIcon,
-  ListBulletIcon,
-  HomeIcon,
-} from "@radix-ui/react-icons";
+import { ListBulletIcon, HomeIcon } from "@radix-ui/react-icons";
 import Logo from "./logo";
 
 export default function Navigation() {

@@ -24,8 +24,8 @@ export default function ProductsList() {
           className="flex justify-between items-center p-6 border-b border-gray-300 hover:bg-gray-100"
         >
           <div className="flex-1 flex">
-            <span className="mr-4">{product.id}</span>
-            <span>{product.name}</span>
+            <span className="mr-4 font-light">{product.id}</span>
+            <span className="font-semibold">{product.name}</span>
           </div>
           <span className="flex-2 text-right">{product.description}</span>
         </Link>

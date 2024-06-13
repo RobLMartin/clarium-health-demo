@@ -1,7 +1,10 @@
 from datetime import datetime, timedelta
 import random
-from models import db, Product, HistoricalInventory
+from models import db, Product, HistoricalInventory, PredictedInventory
 from config import app
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def seed_products():
@@ -18,17 +21,35 @@ def seed_products():
     db.session.commit()
 
 
-def seed_historical_inventory():
+def seed_inventory():
     products = Product.query.all()
     start_date = datetime.now() - timedelta(days=3 * 365)
     for product in products:
         current_date = start_date
         while current_date <= datetime.now():
-            quantity = random.randint(50, 200)  # Random quantity between 50 and 200
-            record = HistoricalInventory(
-                product_id=product.id, date=current_date.date(), quantity=quantity
+            quantity = random.randint(50, 200)
+            historical_record = HistoricalInventory(
+                product_id=product.id, date=current_date, quantity=quantity
             )
-            db.session.add(record)
+
+            if random.random() < 0.1:
+                predicted_quantity = quantity
+            else:
+                predicted_quantity = int(quantity * random.uniform(0.8, 1.2))
+
+            predicted_record = PredictedInventory(
+                product_id=product.id,
+                date=current_date,
+                predicted_quantity=predicted_quantity,
+            )
+            db.session.add(historical_record)
+            db.session.add(predicted_record)
+            logging.debug(
+                f"HistoricalInventory: {product.id}, Date: {current_date}, Quantity: {quantity}"
+            )
+            logging.debug(
+                f"PredictedInventory: {product.id}, Date: {current_date}, Predicted Quantity: {predicted_quantity}"
+            )
             current_date += timedelta(days=1)
 
     db.session.commit()
@@ -38,7 +59,7 @@ def main():
     with app.app_context():
         db.create_all()
         seed_products()
-        seed_historical_inventory()
+        seed_inventory()
         print("Database seeded successfully.")
 
 

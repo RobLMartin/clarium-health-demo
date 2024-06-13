@@ -62,7 +62,7 @@ class PredictedInventory(db.Model):
 class InventoryAlert(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey("product.id"), nullable=False)
-    alert_type = db.Column(db.String(50), nullable=False)  # 'overstock' or 'shortage'
+    alert_type = db.Column(db.String(50), nullable=False)
     alert_message = db.Column(db.String(300), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(
