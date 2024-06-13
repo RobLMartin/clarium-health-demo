@@ -22,7 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="w-auto border-x dark:border-neutral-700">
             <Navigation />
           </div>
-          <div className="w-full border-r dark:border-neutral-700 p-6">
+          <div className="w-full border-r dark:border-neutral-700">
             {children}
           </div>
         </div>
