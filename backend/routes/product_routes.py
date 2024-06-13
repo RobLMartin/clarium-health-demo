@@ -51,7 +51,7 @@ def get_product_inventory_data(id):
     return jsonify(
         {
             "product": product.to_json(),
-            "historical_data": [record.to_json() for record in historical_data],
-            "predicted_data": [record.to_json() for record in predicted_data],
+            "historicalData": [record.to_json() for record in historical_data],
+            "predictedData": [record.to_json() for record in predicted_data],
         }
     )
