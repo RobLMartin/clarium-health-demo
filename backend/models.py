@@ -29,11 +29,11 @@ class HistoricalInventory(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "product_id": self.product_id,
+            "productId": self.product_id,
             "date": self.date.isoformat(),
             "quantity": self.quantity,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
+            "createdAt": self.created_at.isoformat(),
+            "updatedAt": self.updated_at.isoformat(),
         }
 
 
@@ -51,11 +51,11 @@ class PredictedInventory(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "product_id": self.product_id,
+            "productId": self.product_id,
             "date": self.date.isoformat(),
-            "predicted_quantity": self.predicted_quantity,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
+            "predictedQuantity": self.predicted_quantity,
+            "createdAt": self.created_at.isoformat(),
+            "updatedAt": self.updated_at.isoformat(),
         }
 
 
@@ -73,9 +73,9 @@ class InventoryAlert(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "product_id": self.product_id,
-            "alert_type": self.alert_type,
-            "alert_message": self.alert_message,
-            "created_at": self.created_at.isoformat(),
-            "updated_at": self.updated_at.isoformat(),
+            "productId": self.product_id,
+            "alertType": self.alert_type,
+            "alertMessage": self.alert_message,
+            "createdAt": self.created_at.isoformat(),
+            "updatedAt": self.updated_at.isoformat(),
         }
