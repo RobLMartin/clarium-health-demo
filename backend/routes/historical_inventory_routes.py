@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models import db, HistoricalInventory, Product
+from models import db, HistoricalInventory
 import csv
 from datetime import datetime
 
