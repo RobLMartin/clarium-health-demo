@@ -13,7 +13,7 @@ export default function Index() {
 
         <div className="mt-16">
           <a
-            href="/about"
+            href="https://robertmartin.dev"
             className="text-blue-500 hover:text-blue-700 transition-colors duration-300 text-lg"
           >
             Learn More About My Work
